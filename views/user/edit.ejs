@@ -1,0 +1,56 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-8 col-md-offset-2">
+        	<br>
+            <div class="panel panel-default">
+                <div class="panel-heading">User Edit</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="/user/update/<%= user.id %>" id="signup-form">
+                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Name</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" value="<%= user.name %>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Title</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="title"  value="<%= user.title %>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Email</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="email"  value="<%= user.email %>">
+                            </div>
+                        </div>
+                        
+                        <% if(session.authenticated && session.User.admin) { %>
+                            <div class="form-group">    
+                                <label class="col-md-4 control-label">Role</label>
+                                <% if(user.admin) { %>
+                                    <input type="hidden" name="admin" value="unchecked">
+                                    <div class="col-md-6">
+                                        <input type="checkbox" name="admin" checked> Admin
+                                    </div>
+                                <% } else { %>
+                                    <input type="hidden" name="admin" value="unchecked">
+                                    <div class="col-md-6">
+                                        <input type="checkbox" name="admin"> Admin
+                                    </div>
+                                <% } %>
+                            </div>
+                        <% } %>
+                        
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
